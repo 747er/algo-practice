@@ -1,17 +1,17 @@
-// function twoNumberSum(array, targetSum) {
-//   const nums = {};
+function twoNumberSum(array, targetSum) {
+  const nums = {};
 
-//   for (const num of array) {
-//     const potentialMatch = targetSum - num;
-//     if (potentialMatch in nums) {
-//       return [potentialMatch, num];
-//     } else {
-//       nums[num] = true;
-//     }
-//   }
+  for (const num of array) {
+    const potentialMatch = targetSum - num;
+    if (potentialMatch in nums) {
+      return [potentialMatch, num];
+    } else {
+      nums[num] = true;
+    }
+  }
 
-//   return [];
-// }
+  return [];
+}
 
 // MISTAKE 7/16
 // THE ERROR HERE IS USING *IN* INSTEAD OF *OF*
