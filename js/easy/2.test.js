@@ -2,7 +2,7 @@
 // question's sample test case. Feel free to add, edit,
 // or remove test cases in this file as you see fit!
 
-const program = require("./1");
+const program = require("./2");
 const chai = require("chai");
 
 it("Test Case #1", function () {
