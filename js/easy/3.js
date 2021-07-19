@@ -9,11 +9,9 @@ function sortedSquaredArray(array) {
     const largerValue = array[largerValueIdx];
 
     if (Math.abs(smallerValue) > Math.abs(largerValue)) {
-      console.log("smaller ++");
       sortedSquares[idx] = smallerValue * smallerValue;
       smallerValueIdx++;
     } else {
-      console.log("larger --");
       sortedSquares[idx] = largerValue * largerValue;
       largerValueIdx--;
     }
