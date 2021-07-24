@@ -5,7 +5,7 @@
 const program = require("./2");
 const chai = require("chai");
 
-it("Test Case #1", function () {
+it("Easy 2. Test Case #1", function () {
   const array = [5, 1, 22, 25, 6, -1, 8, 10];
   const sequence = [1, 6, -1, 10];
   chai.expect(program.isValidSubsequence(array, sequence)).to.deep.equal(true);

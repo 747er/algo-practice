@@ -5,7 +5,7 @@
 const program = require("./4");
 const chai = require("chai");
 
-it("Test Case #1", function () {
+it("Easy 4. Test Case #1", function () {
   const competitions = [
     ["HTML", "C#"],
     ["C#", "Python"],

@@ -13,7 +13,7 @@ class BST {
   }
 }
 
-it("6. Test Case #1", function () {
+it("Easy 6. Test Case #1", function () {
   const root = new BST(10);
   root.left = new BST(5);
   root.left.left = new BST(2);

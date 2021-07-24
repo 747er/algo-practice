@@ -5,14 +5,14 @@
 const program = require("./5");
 const chai = require("chai");
 
-it("5. Test Case #1", function () {
+it("Easy 5. Test Case #1", function () {
   const input = [0];
   const expected = 1;
   const actual = program.nonConstructibleChange(input);
   chai.expect(actual).to.deep.equal(expected);
 });
 
-it("5. Test Case #2", function () {
+it("Easy 5. Test Case #2", function () {
   const input = [5, 7, 1, 1, 2, 3, 22];
   const expected = 20;
   const actual = program.nonConstructibleChange(input);
