@@ -1,9 +1,9 @@
 function sunsetViews(buildings, direction) {
   // Write your code here.
   let goodViews = [];
-  let isEast = true;
-  if (direction === "West") {
-    isEast = false;
+  let isWest = false;
+  if (direction === "WEST") {
+    isWest = true;
   }
 
   let leftPointer = 0;
@@ -11,17 +11,28 @@ function sunsetViews(buildings, direction) {
   let lMax = 0;
   let rMax = buildings[rightPointer];
 
-  while (leftPointer < rightPointer) {
-    if (isEast) {
-      if ((leftPointer = 0 || buildings[leftPointer] > lMax)) {
+  console.log("goodViews.length: ", goodViews.length);
+
+  while (leftPointer <= rightPointer) {
+    if (isWest) {
+      if (leftPointer === 0 || buildings[leftPointer] > lMax) {
         goodViews.push(leftPointer);
         lMax = buildings[leftPointer];
       }
+      leftPointer++;
+    } else {
+      if (
+        rightPointer === buildings.length - 1 ||
+        buildings[rightPointer] > rMax
+      ) {
+        goodViews.push(rightPointer);
+        rMax = buildings[rightPointer];
+      }
+      rightPointer--;
     }
-    leftPointer++;
   }
-
-  return [];
+  if (!isWest) goodViews.reverse();
+  return goodViews;
 }
 
 // Do not edit the line below.
