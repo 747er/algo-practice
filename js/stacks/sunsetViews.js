@@ -11,8 +11,6 @@ function sunsetViews(buildings, direction) {
   let lMax = 0;
   let rMax = buildings[rightPointer];
 
-  console.log("goodViews.length: ", goodViews.length);
-
   while (leftPointer <= rightPointer) {
     if (isWest) {
       if (leftPointer === 0 || buildings[leftPointer] > lMax) {

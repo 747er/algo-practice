@@ -15,7 +15,6 @@ class Node {
 
   depthFirstSearch(array) {
     // Write your code here.
-    console.log(this);
     array.push(this.name);
     for (const child of this.children) {
       child.depthFirstSearch(array);
