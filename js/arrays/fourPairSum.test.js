@@ -2,7 +2,7 @@
 // question's sample test case. Feel free to add, edit,
 // or remove test cases in this file as you see fit!
 
-const program = require("./program");
+const program = require("./fourPairSum");
 const chai = require("chai");
 
 function sortAndStringify(array) {
