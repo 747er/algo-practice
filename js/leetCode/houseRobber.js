@@ -91,14 +91,22 @@ dp[i] = max(dp[i-2] + nums[i], dp[i-1])
 // };
 
 // Shorter way to do one above
+// var rob = function (nums) {
+//   let [robn1, robn2] = [0, 0];
+//   nums.forEach((n) => {
+//     let temp = Math.max(n + robn2, robn1);
+//     robn2 = robn1;
+//     robn1 = temp;
+//   });
+//   return robn1;
+// };
+
+// One Liner
 var rob = function (nums) {
-  let [robn1, robn2] = [0, 0];
-  nums.forEach((n) => {
-    let temp = Math.max(n + robn2, robn1);
-    robn2 = robn1;
-    robn1 = temp;
-  });
-  return robn1;
+  return nums.reduce(
+    (acc, cur) => [acc[1], Math.max(acc[1], acc[0] + cur)],
+    [0, 0]
+  )[1];
 };
 
 console.log(rob([1, 2, 3, 1]));
