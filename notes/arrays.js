@@ -4,6 +4,7 @@ const peopleArray = [
   { first: "John", last: "Smith" },
   { first: "Sally", last: "Doe" },
 ];
+const names = ["John", "Sally", "Peter"];
 
 // FILTER
 let filtered = numbers.filter((num) => num > 20);
@@ -49,3 +50,101 @@ const addFullname = peopleArray.map((p) => ({
 }));
 console.log(addFullname);
 console.log(addFullname[0]);
+
+// JOIN
+console.log(names.join(" "));
+
+// Reverse
+numbers.reverse();
+
+// Reverse complicated, demoing
+let flipped = [];
+for (const number of numbers) {
+  flipped = [number, ...flipped];
+}
+
+console.log(numbers);
+console.log(flipped);
+
+// ReduceRight
+let rrNumbers = [10, 20, 30, 40, 50];
+numbers.reduceRight((agg, number) => [...agg, number], []);
+console.log(numbers);
+
+// Reduce example
+let groups = [
+  [3, 2],
+  [2, 5],
+  [3, 7],
+];
+groups.reduce((agg, curr) => {
+  for (let i = 0; i < curr[0]; i++) {
+    agg.push(curr[1]);
+  }
+  return agg;
+}, []);
+
+console.log(groups);
+
+// Reduce example DESTRUCTURE
+let rdGroups = [
+  [3, 2],
+  [2, 5],
+  [3, 7],
+];
+rdGroups.reduce((agg, { count, value }) => {
+  for (let i = 0; i < count; i++) {
+    agg.push(value);
+  }
+  return agg;
+}, []);
+
+console.log(rdGroups);
+
+// REDUCE DESTRUCTURE FILL
+let rdfGroups = [
+  [3, 2],
+  [2, 5],
+  [3, 7],
+];
+rdfGroups.reduce(
+  (agg, { count, value }) => [...agg, ...Array(count).fill(value)],
+  []
+);
+
+console.log(rdfGroups);
+
+// LOOKUP
+let lookupNumbers = [12, 15, 12, 2, 6, 6, 2, 12];
+const lookup = {};
+
+for (const number of lookupNumbers) {
+  // Does it exist? If not, 0
+  lookup[number] = (lookup[number] ?? 0) + 1;
+}
+console.log(lookup);
+
+// LOOKUP OBJ
+lookupObj = lookupNumbers.reduce(
+  (agg, curr) => ({
+    ...lookup,
+    [curr]: (lookup[curr] ?? 0) + 1,
+  }),
+  {}
+);
+
+console.log(lookupObj);
+
+// LOOKUP MIN MAX
+lookupMM = lookupNumbers.reduce(
+  (agg, curr) => ({
+    max: Math.max(agg.max, curr),
+    min: Math.min(agg.min, curr),
+  }),
+  {
+    max: -Infinity,
+    min: Infinity,
+  }
+);
+
+console.log(lookupMM);
