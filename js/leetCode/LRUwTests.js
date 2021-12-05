@@ -33,9 +33,14 @@ expect(cache).to.have.property("capacity");
 expect(cache).to.have.property("capacity").with.equal(2);
 
 cache.put(1, 1);
-expect(cache.cache).to.have.property("1");
-expect(Object.keys(cache.cache).length).to.equal(1);
+
+console.log(cache.cache);
+console.log(cache.cache.keys().next());
+console.log(cache.cache.entries().next());
+
+expect(cache.cache.keys().next().value).to.equal(1);
 expect(cache.cache[1]).to.equal(1);
+
 cache.put(2, 2);
 expect(cache.cache).to.have.property("2");
 expect(Object.keys(cache.cache).length).to.equal(2);

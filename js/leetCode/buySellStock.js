@@ -34,4 +34,4 @@ var maxProfit = function (prices) {
   return max;
 };
 
-console.log(maxProfit([15, 20, 5, 4, 1, 8]));
+console.log(maxProfit([1, 2]));

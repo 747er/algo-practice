@@ -6,27 +6,15 @@ function minNumberOfCoinsForChange(n, denoms) {
   numOfCoins[0] = 0;
 
   for (denom of denoms) {
-    console.log(denom);
     for (let amount = 0; amount < numOfCoins.length; amount++) {
-      console.log(amount);
       if (denom <= amount) {
-        // numOfCoins[amount] = Math.min(denom, numOfCoins[amount - 1])
-
-        console.log(denom);
-        console.log(amount);
-        console.log(numOfCoins[amount]);
         numOfCoins[amount] = Math.min(
           numOfCoins[amount],
           numOfCoins[amount - denom] + 1
         );
-        console.log(numOfCoins[amount]);
       }
     }
   }
-
-  console.log(numOfCoins);
-
-  console.log(numOfCoins[n]);
 
   return numOfCoins[n] === Infinity ? -1 : numOfCoins[n];
 }
