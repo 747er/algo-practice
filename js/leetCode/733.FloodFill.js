@@ -1,78 +1,66 @@
-const { expect } = require("chai");
+let { expect } = require("chai");
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
 
-var floodFill = function (image, sr, sc, newColor) {
-  const squareShouldBeFilled = (y, x, oldColor) => {
-    if (oldColor === newColor) return false;
-    if (y < 0 || y > image.length - 1 || image[y][x] !== oldColor) return false;
-    if (x < 0 || x > image[0].length - 1 || image[y][x] !== oldColor)
-      return false;
+var maxAreaOfIsland = function (grid) {
+  let maxArea = 0;
+  let rowLength = grid[0].length;
 
-    return true;
+  const findArea = (row, col, size) => {
+    if (
+      col >= rowLength ||
+      col < 0 ||
+      row >= grid.length ||
+      row < 0 ||
+      grid[row][col] !== 1
+    ) {
+      return 0;
+    }
+
+    grid[row][col] = 0;
+
+    return (
+      1 +
+      findArea(row, col + 1) +
+      findArea(row, col - 1) +
+      findArea(row + 1, col) +
+      findArea(row - 1, col)
+    );
   };
-  const fillColor = (y, x, oldColor) => {
-    image[y][x] = newColor;
 
-    //     // UP
-    if (squareShouldBeFilled(y - 1, x, oldColor)) {
-      fillColor(y - 1, x, oldColor);
+  for (row = 0; row < grid.length; row++) {
+    for (col = 0; col < grid[row].length; col++) {
+      if (grid[row][col] === 1) {
+        maxArea = Math.max(maxArea, findArea(row, col, 0));
+      }
     }
-    //     // DOWN
-    if (squareShouldBeFilled(y + 1, x, oldColor)) {
-      fillColor(y + 1, x, oldColor);
-    }
-    //     // RIGHT
-    if (squareShouldBeFilled(y, x + 1, oldColor)) {
-      fillColor(y, x + 1, oldColor);
-    }
-    //     // LEFT
-    if (squareShouldBeFilled(y, x - 1, oldColor)) {
-      fillColor(y, x - 1, oldColor);
-    }
-  };
-  fillColor(sr, sc, image[sr][sc]);
+  }
 
-  return image;
+  return maxArea;
 };
 
-// expect(floodFill([[1]], 0, 0, 2)).to.deep.equal([[2]])
+let simpleGrid = [[0, 1, 1]];
+let simpleGridTwo = [
+  [0, 1, 1],
+  [0, 1, 0],
+];
+let simpleGridThree = [
+  [0, 1, 1],
+  [1, 1, 0],
+];
+let simpleGridFour = [
+  [0, 0, 1],
+  [1, 0, 1],
+  [1, 1, 1],
+];
 
-// We'll get here
-// expect(floodFill([[0,0,0],[0,0,0]], 0, 0, 2)).to.deep.equal([[2,2,2],[2,2,2]])
-expect(
-  floodFill(
-    [
-      [0, 0, 0],
-      [0, 1, 1],
-    ],
-    1,
-    1,
-    1
-  )
-).to.deep.equal([
-  [2, 2, 2],
-  [2, 2, 2],
-]);
+// let grid1 = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
 
-// [[0,0,0],[0,1,1]]
-// 1
-// 1
-// 1
-
-// 2 2 0
-// 0 0 0
-
-// 1, 1, 1
-// 1, 1, 0
-// 1, 0, 1
-
-// Starting at [SR,SC] [Y,X]
-// Eval 4 directions (N, E, S, W)
-//// IF value == value
-////// value = new value
-////// eval 4 directions
-
-// Input: image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, newColor = 2
-// Output: [[2,2,2],[2,2,2]]
-// floodFill([[0,0,0],[0,0,0]], 0, 0, 2)
-
-expect(true).to.equal(true);
+expect(maxAreaOfIsland).to.exist;
+expect(maxAreaOfIsland(simpleGrid)).to.equal(2);
+expect(maxAreaOfIsland(simpleGridTwo)).to.equal(3);
+expect(maxAreaOfIsland(simpleGridThree)).to.equal(4);
+expect(maxAreaOfIsland(simpleGridFour)).to.equal(6);
+// expect(maxAreaOfIsland(grid1)).to.equal(6)
