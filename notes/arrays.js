@@ -148,3 +148,24 @@ lookupMM = lookupNumbers.reduce(
 );
 
 console.log(lookupMM);
+
+// TRANSPOSE
+// 1,2  => 1,3
+// 3,4  => 2,4
+for (let i = 0; i < matrix.length; i++) {
+  for (let j = i; j < matrix[0].length; j++) {
+    let temp = matrix[i][j];
+    matrix[i][j] = matrix[j][i];
+    matrix[j][i] = temp;
+  }
+}
+
+// REVERSE
+for (let i = 0; i < matrix.length; i++) {
+  for (let j = 0; j < matrix[0].length / 2; j++) {
+    let temp = matrix[i][j];
+    matrix[i][j] = matrix[i][matrix[0].length - j - 1];
+    matrix[i][matrix[0].length - j - 1] = temp;
+  }
+}
+return matrix;
