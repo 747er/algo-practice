@@ -1,0 +1,75 @@
+CHARTJS:
+    Limiting chart.data.labels
+        set maxTicksLimit
+
+    Add vertical line to chartJS hover
+        buildChart() {
+            const tooltipLine = {
+            id: "tooltipLine",
+            beforeDraw: (chart) => {
+                if (chart.tooltip._active && chart.tooltip._active.length) {
+                const ctx = chart.ctx;
+                ctx.save();
+                const activePoint = chart.tooltip._active[0];
+                const bottomY = chart.chartArea.bottom;
+
+                ctx.beginPath();
+                ctx.moveTo(activePoint.element.x, chart.chartArea.top);
+                ctx.lineTo(activePoint.element.x, bottomY);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = "#555";
+                ctx.stroke();
+                ctx.restore();
+                }
+            },
+            };
+
+            this.chart = new Chart(this.targets.chart, {
+            type: "line",
+            data: {
+                labels: this.audienceData.timeLabel,
+                datasets: [
+                {
+                    label: "Audience Views",
+                    borderColor: "rgba(0, 148, 238,1)",
+                    borderWidth: "2",
+                    backgroundColor: "rgba(0, 148, 238,.2)",
+                    pointHighlightStroke: "rgba(0, 148, 238,1)",
+                    data: this.audienceData.todayData,
+                    fill: true,
+                },
+                ],
+            },
+            options: {
+                responsive: true,
+                elements: {
+                point: {
+                    radius: 0,
+                },
+                },
+
+                plugins: {
+                tooltip: {
+                    mode: "index",
+                    intersect: false,
+                },
+                },
+
+                scales: {
+                xAxis: {
+                    ticks: {
+                    min: 5,
+                    maxRotation: 0,
+                    callback: function (val, index) {
+                        return index % 20 === 0 ? this.getLabelForValue(val) : "";
+                    },
+                    },
+                },
+                },
+                maintainAspectRatio: false,
+            },
+            plugins: [tooltipLine],
+            });
+
+            return this.chart;
+        }

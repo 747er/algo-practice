@@ -1,0 +1,2 @@
+Replace file name in directory by matching string:
+for file in *.svg; do mv "$file" "${file/.svg/_4x3.svg}"; done

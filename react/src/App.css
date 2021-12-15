@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 600px;
+}
+
+.board-square {
+  cursor: pointer;
+  height: calc(600px / 3);
+  width: calc(600px / 3);
 }
