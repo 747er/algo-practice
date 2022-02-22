@@ -1,10 +1,11 @@
 class Results {
     constructor (props) {
-        return this.getResults(props.resultsURL);
+        this.url = props.url;
+        return this.getResults(props.url);
     }
 
     getResults = () => {
-        console.log(`returning results from ${this.props.resultsURL}`);
+        console.log(`returning results from ${this.url}`);
         return [1,2,3]
     }
 }
@@ -22,12 +23,24 @@ class Application {
     }
 
     initResults = () => {
-        this.results = new Results(this.resultsURL);
+        this.results = new Results({
+            url: this.resultsURL
+        });
+    }
+
+    renderResults = () => {
+        this.#safeRender(this.results, this.templates['primary-results']);
+    }
+
+    #safeRender = (data, target) => {
+        console.log(`putting ${data} into ${target}`)
     }
 
     #pageTemplateConfig = {
-        'media': 'base-with-flyout',
-        'ou-services': 'grid',
+        'media': {
+            'primary-results': 'some-template-id',
+            'primary-tabs': 'some-template-id'
+        },
     }
 
     #getPageTemplate = () => {
@@ -53,6 +66,7 @@ let media = new Application({
 });
 
 media.initResults();
+media.renderResults();
 
 console.log(media.results);
 
