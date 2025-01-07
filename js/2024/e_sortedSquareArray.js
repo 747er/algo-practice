@@ -41,6 +41,22 @@ const sortedSquaredArray2 = (array) => {
     return outputArray;
   };
 
+  const sortedSquaredArrayThree = (areas) => {
+    const output = new Array(areas.length);
+
+    let lIdx = 0;
+    let rIdx = areas.length - 1;
+
+    for (let i = areas.length - 1; i >= 0; i--) {
+        const leftSquare = areas[lIdx] * areas[lIdx]
+        const rightSquare = areas[rIdx] * areas[rIdx]
+        output[i] = Math.max(leftSquare, rightSquare);
+
+        leftSquare > rightSquare ? lIdx++  : rIdx--;
+    }
+    return output;
+}
+
 // const array = [1,2,3,5,6,8,9];
 const array = [-2, -1];
 const result = sortedSquaredArray(array);
@@ -48,20 +64,3 @@ const result2 = sortedSquaredArray2(array);
 console.log(result);
 console.log(result2);
 
-
-// outputArray.push(
-//     Math.abs(array[lIdx]) > Math.abs(array[rIdx])
-//       ? array[lIdx] * array[lIdx]
-//       : array[rIdx] * array[rIdx]
-//   );
-
-
-// for (let idx = outputArray.length - 1; idx >= 0; idx--) {
-//     if (Math.abs(array[lIdx]) > Math.abs(array[rIdx])) {
-//         outputArray[idx] = array[lIdx] ** 2
-//         lIdx++
-//     } else {
-//         outputArray[idx] = array[rIdx] ** 2
-//         rIdx--
-//     }
-// }
